@@ -13,4 +13,12 @@ func _ready():
 
  #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position+=transform.x*speed*delta
+	position-=transform.y*speed*delta
+
+
+func _on_Area2D_area_entered(area):
+	queue_free()
+
+
+func _on_Despawner_timeout():
+	queue_free()
