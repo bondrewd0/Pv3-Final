@@ -56,8 +56,17 @@ func _on_BuffTimer_timeout():
 	firingCooldown=0.3
 
 
+func _fireRate_up():
+	buffTimerRef.start(5)
+	firingCooldown=0.15
+	print(1)
+
+
+
+
+
 func _on_Area2D_area_entered(area):
-	if area.ge
-		#firingCooldown=0.1
-		#buffTimerRef.start(5)
-		print(1)
+	_fireRate_up()
+
+
+
