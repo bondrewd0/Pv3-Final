@@ -53,19 +53,19 @@ func _on_FireRate_timeout():
 
 
 func _on_BuffTimer_timeout():
-	firingCooldown=0.3
+	firingCooldown=0.15
 
 
 func _fireRate_up():
 	buffTimerRef.start(5)
-	firingCooldown=0.15
+	firingCooldown=0.05
 	print(1)
 
 
 
 
 
-func _on_Area2D_area_entered(area):
+func _on_Area2D_area_entered(_area):
 	_fireRate_up()
 
 

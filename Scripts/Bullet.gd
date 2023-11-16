@@ -16,9 +16,8 @@ func _process(delta):
 	position-=transform.y*speed*delta
 
 
-func _on_Area2D_area_entered(area):
+func _on_Area2D_area_entered(_area):
 	queue_free()
 
-
-func _on_Despawner_timeout():
+func _on_VisibilityNotifier2D_viewport_exited(viewport):
 	queue_free()
