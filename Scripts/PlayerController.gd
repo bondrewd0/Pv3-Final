@@ -59,7 +59,6 @@ func _on_BuffTimer_timeout():
 func _fireRate_up():
 	buffTimerRef.start(5)
 	firingCooldown=0.05
-	print(1)
 
 
 
