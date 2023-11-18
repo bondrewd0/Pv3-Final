@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="Nuevo Proyecto De Juego"
+config/name="Final PV3"
 run/main_scene="res://TestLevel.tscn"
 config/icon="res://icon.png"
 
