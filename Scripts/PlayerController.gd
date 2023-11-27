@@ -6,12 +6,13 @@ extends Node2D
 # var b = "text"
 onready var body=$KinematicBody2D
 export var  speed=0.0
-var bulletScene=preload("res://Bullet.tscn")
+var bulletScene=preload("res://Scenes/Bullet.tscn")
 onready var bulletPos=$KinematicBody2D/Position2D
 var  canShoot=true
 var firingCooldown=0.3
 onready var timerRef=$KinematicBody2D/FireRate
 onready var buffTimerRef=$KinematicBody2D/BuffTimer
+var type='Player'
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -44,6 +45,7 @@ func open_fire():
 		var bulletInstance=bulletScene.instance()
 		add_child(bulletInstance)
 		bulletInstance.global_position=bulletPos.global_position
+		bulletInstance.dir=Vector2(0,-1)
 		timerRef.start(firingCooldown)
 	pass
 

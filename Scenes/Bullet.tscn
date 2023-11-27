@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Bullet.gd" type="Script" id=1]
+[ext_resource path="res://06.png" type="Texture" id=2]
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource( 1 )
+speed = 450
+
+[node name="Sprite" type="Sprite" parent="." groups=["Bullet"]]
+rotation = 4.71239
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Sprite"]
+position = Vector2( -1.37383, 0.0791154 )
+rotation = 1.5708
+scale = Vector2( 1.08104, 1.44358 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 0, 4.955 )
+cast_to = Vector2( 0, -9 )
+collision_mask = 17
+
+[connection signal="viewport_exited" from="Sprite/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]

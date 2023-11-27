@@ -4,7 +4,7 @@ extends Node
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var buffNode= preload("res://Buff.tscn")
+var buffNode= preload("res://Scenes/Buff.tscn")
 onready var viewportSize=get_viewport().get_size_override()
 onready var buffTimer=$BuffSpawner
 # Called when the node enters the scene tree for the first time.
@@ -21,6 +21,6 @@ func _spawn_Buff():
 	buffTimer.start(10)
 
 func _generate_Random_Pos():
-	var posY=rand_range(50,viewportSize.y-50)
+	var posY=rand_range(10,50)
 	var posX=rand_range(50,viewportSize.x-50)
 	return  Vector2(posX,posY)
