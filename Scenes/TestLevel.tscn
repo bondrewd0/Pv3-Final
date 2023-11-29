@@ -15,6 +15,6 @@ wait_time = 5.0
 autostart = true
 
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
-position = Vector2( 719, 346 )
+position = Vector2( 322, 75 )
 
 [connection signal="timeout" from="BuffSpawner" to="." method="_on_BuffSpawner_timeout"]
