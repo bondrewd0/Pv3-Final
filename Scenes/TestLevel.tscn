@@ -7,14 +7,16 @@
 [node name="TestLevel" type="Node"]
 script = ExtResource( 4 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 244, 231 )
-
 [node name="BuffSpawner" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
 
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 384, 263 )
+speed = 300.0
+
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
-position = Vector2( 322, 75 )
+position = Vector2( 301, 132 )
+rotation = 3.83972
 
 [connection signal="timeout" from="BuffSpawner" to="." method="_on_BuffSpawner_timeout"]

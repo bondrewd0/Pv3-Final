@@ -14,6 +14,11 @@ func _ready():
  #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	self.position+=dir*speed*delta
+	if($RayCast2D.is_colliding()):
+		var collid=$RayCast2D.get_collider()
+		if(collid.type=='Enemy'):
+			collid._destroy()
+		queue_free()
 
 
 

@@ -1,17 +1,16 @@
-extends Node2D
+extends KinematicBody2D
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-onready var body=$KinematicBody2D
 export var  speed=0.0
 var bulletScene=preload("res://Scenes/Bullet.tscn")
-onready var bulletPos=$KinematicBody2D/Position2D
+onready var bulletPos=$Position2D
 var  canShoot=true
 var firingCooldown=0.3
-onready var timerRef=$KinematicBody2D/FireRate
-onready var buffTimerRef=$KinematicBody2D/BuffTimer
+onready var timerRef=$FireRate
+onready var buffTimerRef=$BuffTimer
 var type='Player'
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,24 +34,23 @@ func _process(delta):
 	if(Input.is_action_pressed("Down")):
 		motion+=Vector2(0,1)
 	var velocity=motion.normalized()*speed
-	body.move_and_slide(velocity)
+	move_and_slide(velocity)
 	if(Input.is_action_pressed("Shoot")):
 		open_fire()
 	pass
+
 func open_fire():
 	if(canShoot):
 		canShoot=false
+		timerRef.start(firingCooldown)
 		var bulletInstance=bulletScene.instance()
-		add_child(bulletInstance)
 		bulletInstance.global_position=bulletPos.global_position
 		bulletInstance.dir=Vector2(0,-1)
-		timerRef.start(firingCooldown)
+		get_parent().add_child(bulletInstance)
 	pass
 
 func _on_FireRate_timeout():
 	canShoot=!canShoot
-
-
 
 func _on_BuffTimer_timeout():
 	firingCooldown=0.15
@@ -61,10 +59,6 @@ func _on_BuffTimer_timeout():
 func _fireRate_up():
 	buffTimerRef.start(5)
 	firingCooldown=0.05
-
-
-
-
 
 func _on_Area2D_area_entered(_area):
 	_fireRate_up()

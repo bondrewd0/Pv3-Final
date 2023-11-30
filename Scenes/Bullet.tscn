@@ -19,6 +19,7 @@ scale = Vector2( 1.08104, 1.44358 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2( 0, 4.955 )
+enabled = true
 cast_to = Vector2( 0, -9 )
 collision_mask = 17
 
