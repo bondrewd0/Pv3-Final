@@ -6,6 +6,7 @@ extends Node2D
 # var b = "text"
 export var speed=0
 var dir= Vector2(1,0)
+var type=''
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -17,9 +18,8 @@ func _process(delta):
 	if($RayCast2D.is_colliding()):
 		var collid=$RayCast2D.get_collider()
 		if(collid.type=='Enemy'):
-			collid._destroy()
+			collid._destroy(type)
 		queue_free()
-
 
 
 func _on_VisibilityNotifier2D_viewport_exited(_viewport):

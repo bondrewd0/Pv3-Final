@@ -46,6 +46,7 @@ func open_fire():
 		var bulletInstance=bulletScene.instance()
 		bulletInstance.global_position=bulletPos.global_position
 		bulletInstance.dir=Vector2(0,-1)
+		bulletInstance.type='PlayerBullet'
 		get_parent().add_child(bulletInstance)
 	pass
 
