@@ -14,6 +14,11 @@ config/name="Final PV3"
 run/main_scene="res://Scenes/TestLevel.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=600
+window/size/height=720
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

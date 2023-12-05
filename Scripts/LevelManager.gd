@@ -7,12 +7,12 @@ extends Node
 var buffNode= preload("res://Scenes/Buff.tscn")
 var enemyScene=preload("res://Scenes/Enemy.tscn")
 var positions=[
+Vector2(50,40),
 Vector2(150,40),
-Vector2(300,40),
+Vector2(250,40),
+Vector2(350,40),
 Vector2(450,40),
-Vector2(600,40),
-Vector2(750,40),
-Vector2(900,40)
+Vector2(550,40)
 ]
 var posSelector=0
 onready var viewportSize=get_viewport().get_size_override()
@@ -50,4 +50,5 @@ func _spawn_Enemies():
 	var enemyIns=enemyScene.instance()
 	enemyIns.attackType=round(rand_range(-1,1))
 	enemyIns.position=positions[posSelector]
+	enemyIns.fireRate=0.5
 	add_child(enemyIns)
