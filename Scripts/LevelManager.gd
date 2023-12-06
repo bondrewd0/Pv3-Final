@@ -7,12 +7,12 @@ extends Node
 var buffNode= preload("res://Scenes/Buff.tscn")
 var enemyScene=preload("res://Scenes/Enemy.tscn")
 var positions=[
-Vector2(50,40),
-Vector2(150,40),
-Vector2(250,40),
-Vector2(350,40),
-Vector2(450,40),
-Vector2(550,40)
+Vector2(580,20),
+Vector2(20,20),
+Vector2(580,340),
+Vector2(20,340),
+Vector2(100,700),
+Vector2(500,700)
 ]
 var posSelector=0
 onready var viewportSize=get_viewport().get_size_override()
@@ -39,16 +39,33 @@ func _generate_Random_Pos():
 	return  Vector2(posX,posY)
 
 
-
+func _process(delta):
+#	if Input.is_action_pressed("Shoot"):
+#		print(get_viewport().get_mouse_position())
+	pass
 
 func _on_WaveSpawner_timeout():
-	posSelector=round(rand_range(-1,5))
+	posSelector=int(rand_range(-1,5))
 	_spawn_Enemies()
 	waveTimer.start(10)
 
 func _spawn_Enemies():
 	var enemyIns=enemyScene.instance()
-	enemyIns.attackType=round(rand_range(-1,1))
+	enemyIns.attackType=int(rand_range(-1,3))
+	
 	enemyIns.position=positions[posSelector]
+	match(posSelector):
+		0:
+			enemyIns.finalPos=Vector2(-40,360)
+		1:
+			enemyIns.finalPos=Vector2(640,360)
+		2:
+			enemyIns.finalPos=Vector2(-40,340)
+		3:
+			enemyIns.finalPos=Vector2(640,340)
+		4:
+			enemyIns.finalPos=Vector2(100,-40)
+		5:
+			enemyIns.finalPos=Vector2(500,-40)
 	enemyIns.fireRate=0.5
 	add_child(enemyIns)
