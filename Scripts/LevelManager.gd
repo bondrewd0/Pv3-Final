@@ -20,8 +20,6 @@ onready var buffTimer=$Timers/BuffSpawner
 onready var waveTimer=$Timers/WaveSpawner
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-
 	pass
 
 func _on_BuffSpawner_timeout():
@@ -39,13 +37,13 @@ func _generate_Random_Pos():
 	return  Vector2(posX,posY)
 
 
-func _process(delta):
+func _process(_delta):
 #	if Input.is_action_pressed("Shoot"):
 #		print(get_viewport().get_mouse_position())
 	pass
 
 func _on_WaveSpawner_timeout():
-	posSelector=int(rand_range(-1,5))
+	posSelector=int(rand_range(-1,6))
 	_spawn_Enemies()
 	waveTimer.start(10)
 
@@ -56,16 +54,16 @@ func _spawn_Enemies():
 	enemyIns.position=positions[posSelector]
 	match(posSelector):
 		0:
-			enemyIns.finalPos=Vector2(-40,360)
+			enemyIns.finalPos=Vector2(-100,360)
 		1:
-			enemyIns.finalPos=Vector2(640,360)
+			enemyIns.finalPos=Vector2(700,360)
 		2:
-			enemyIns.finalPos=Vector2(-40,340)
+			enemyIns.finalPos=Vector2(-100,340)
 		3:
-			enemyIns.finalPos=Vector2(640,340)
+			enemyIns.finalPos=Vector2(700,340)
 		4:
-			enemyIns.finalPos=Vector2(100,-40)
+			enemyIns.finalPos=Vector2(100,-100)
 		5:
-			enemyIns.finalPos=Vector2(500,-40)
+			enemyIns.finalPos=Vector2(500,-100)
 	enemyIns.fireRate=0.5
 	add_child(enemyIns)

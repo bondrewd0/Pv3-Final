@@ -24,7 +24,6 @@ var moreRefPoints=[
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(attackType)
 	targetRef.position=Vector2(0,-50)
 	fireRef.start(fireRate)
 	match attackType:
@@ -50,6 +49,7 @@ func _process(_delta):
 			_lockOn_Player()
 		2:
 			_fan_Rotation()
+	_out_Of_View()
 
 
 func _spawn_Normal_Bullets():
@@ -116,5 +116,10 @@ func _lockOn_Player():
 	rotation=position.angle_to_point(playerRef.global_position)-deg2rad(90)
 
 
-func _on_VisibilityNotifier2D_screen_exited():
-	queue_free()
+func _out_Of_View():
+	if(position.x<-20 || position.x>620):
+		queue_free()
+	if(position.y<-20 || position.y>740):
+		queue_free()
+
+
