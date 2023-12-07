@@ -5,7 +5,7 @@ extends Node
 # var a = 2
 # var b = "text"
 var buffNode= preload("res://Scenes/Buff.tscn")
-var enemyScene=preload("res://Scenes/Enemy.tscn")
+var enemyScene=preload("res://Scenes/BaseEnemy.tscn")
 var positions=[
 Vector2(580,20),
 Vector2(20,20),
