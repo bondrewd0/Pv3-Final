@@ -45,11 +45,11 @@ func _process(_delta):
 func _on_WaveSpawner_timeout():
 	posSelector=int(rand_range(-1,6))
 	_spawn_Enemies()
-	waveTimer.start(5)
+	waveTimer.start(10)
 
 func _spawn_Enemies():
 	var enemyIns=enemyScene.instance()
-	enemyIns.attackType=int(rand_range(-1,4))
+	enemyIns.attackType=int(rand_range(-1,5))
 	
 	enemyIns.position=positions[posSelector]
 	match(posSelector):
@@ -66,6 +66,7 @@ func _spawn_Enemies():
 		5:
 			enemyIns.finalPos=Vector2(500,-100)
 	enemyIns.fireRate=0.5
-	if(enemyIns.attackType==3):
-		enemyIns.fireRate=0.2
+	enemyIns.attackType=4
+	if(enemyIns.attackType==3 || enemyIns.attackType==4):
+		enemyIns.fireRate=0.15
 	add_child(enemyIns)

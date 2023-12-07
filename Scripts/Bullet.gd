@@ -17,11 +17,12 @@ func _process(delta):
 	self.position+=dir*speed*delta
 	if($RayCast2D.is_colliding()):
 		var collid=$RayCast2D.get_collider()
-		if(collid.type=='Enemy' && type=='PlayerBullet'):
-			collid._destroy()
-			queue_free()
-		if(type=='EnemyBullet' && collid.type=='Player'):
-			queue_free()
+		if collid!=null:
+			if(collid.type=='Enemy' && type=='PlayerBullet'):
+				collid._destroy()
+				queue_free()
+			if(type=='EnemyBullet' && collid.type=='Player'):
+				queue_free()
 
 
 
