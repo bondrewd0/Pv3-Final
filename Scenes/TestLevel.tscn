@@ -7,7 +7,7 @@
 script = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 384, 263 )
+position = Vector2( 312, 630 )
 speed = 300.0
 
 [node name="Timers" type="Node" parent="."]

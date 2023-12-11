@@ -8,6 +8,7 @@ var buffNode= preload("res://Scenes/Buff.tscn")
 var enemyV1=preload("res://Scenes/Enemies/NormalEnemy.tscn")
 var enemyV2=preload("res://Scenes/Enemies/SniperEnemy.tscn")
 var enemyV3=preload("res://Scenes/Enemies/EnemyMultiShoot.tscn")
+var enemyV4=preload("res://Scenes/Enemies/SplashEnemy.tscn")
 var positions=[
 Vector2(580,20),
 Vector2(20,20),
@@ -51,9 +52,9 @@ func _on_WaveSpawner_timeout():
 
 func _spawn_Enemies():
 
-	var enemyIns=enemyV3.instance()
+	var enemyIns=enemyV4.instance()
 	enemyIns.position=Vector2(50,50)
-	enemyIns.fireRate=0.5
+	enemyIns.fireRate=0.2
 	enemyIns.position=positions[posSelector]
 	match(posSelector):
 		0:
