@@ -5,7 +5,9 @@ extends Node
 # var a = 2
 # var b = "text"
 var buffNode= preload("res://Scenes/Buff.tscn")
-var enemyScene=preload("res://Scenes/BaseEnemy.tscn")
+var enemyV1=preload("res://Scenes/Enemies/NormalEnemy.tscn")
+var enemyV2=preload("res://Scenes/Enemies/SniperEnemy.tscn")
+var enemyV3=preload("res://Scenes/Enemies/EnemyMultiShoot.tscn")
 var positions=[
 Vector2(580,20),
 Vector2(20,20),
@@ -48,9 +50,10 @@ func _on_WaveSpawner_timeout():
 	waveTimer.start(10)
 
 func _spawn_Enemies():
-	var enemyIns=enemyScene.instance()
-	enemyIns.attackType=int(rand_range(-1,5))
-	
+
+	var enemyIns=enemyV3.instance()
+	enemyIns.position=Vector2(50,50)
+	enemyIns.fireRate=0.5
 	enemyIns.position=positions[posSelector]
 	match(posSelector):
 		0:
@@ -65,8 +68,5 @@ func _spawn_Enemies():
 			enemyIns.finalPos=Vector2(100,-100)
 		5:
 			enemyIns.finalPos=Vector2(500,-100)
-	enemyIns.fireRate=0.5
-	enemyIns.attackType=4
-	if(enemyIns.attackType==3 || enemyIns.attackType==4):
-		enemyIns.fireRate=0.15
+	enemyIns.movementTime=9
 	add_child(enemyIns)
