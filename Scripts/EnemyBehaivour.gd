@@ -12,7 +12,7 @@ var bulletScene=preload("res://Scenes/Bullet.tscn")
 var movementTime=10.0
 export var fireRate =2
 var finalPos=Vector2(0,0)
-
+var hitpoints=1
 func _ready():
 	fireRef.start(fireRate)
 	_create_bullet_Targets()
@@ -38,7 +38,9 @@ func _fire_Bullet():
 	pass
 
 func _destroy():
-	queue_free()
+	hitpoints-=1
+	if(hitpoints==0):
+		queue_free()
 
 func _on_Fire_timeout():
 	_fire_Bullet()
