@@ -84,6 +84,17 @@ func _process(_delta):
 	_out_Of_View()
 
 
+func _destroy():
+	queue_free()
+
+
+func _out_Of_View():
+	if(position.x<-20 || position.x>620):
+		queue_free()
+	if(position.y<-20 || position.y>740):
+		queue_free()
+
+#fire
 func _spawn_Normal_Bullets():
 	var bulletIns=bulletScene.instance()
 	bulletIns.position=bulletSpwan.global_position
@@ -168,17 +179,14 @@ func _change_State():
 	if state==2:
 		state=0
 
-
-func _destroy():
-	queue_free()
-
+#actions
 func _fan_Rotation():
 	if state==0:
 		rotate(0.008)
 	if state==1:
 		rotate(-0.008)
 	rotation = clamp(rotation, deg2rad(150), deg2rad(220))
-
+#actions
 func _rotate_RefPoints():
 	rotatorRef.rotate(0.01)
 	if(attackType==4):
@@ -188,9 +196,3 @@ func _rotate_RefPoints():
 func _lockOn_Player():
 	rotation=position.angle_to_point(playerRef.global_position)-deg2rad(90)
 
-
-func _out_Of_View():
-	if(position.x<-20 || position.x>620):
-		queue_free()
-	if(position.y<-20 || position.y>740):
-		queue_free()
