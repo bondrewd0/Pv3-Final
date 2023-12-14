@@ -16,5 +16,6 @@ func _fire_Bullet():
 	bulletIns.rotation=self.rotation
 	bulletIns.dir=Vector2(bulletDir.global_position.x-self.global_position.x,bulletDir.global_position.y-self.global_position.y).normalized()
 	bulletIns.type='EnemyBullet'
+	bulletIns.shooterType=2
 	bulletIns.speed=300
 	get_parent().add_child(bulletIns)

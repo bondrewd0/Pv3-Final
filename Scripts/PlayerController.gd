@@ -6,6 +6,7 @@ extends KinematicBody2D
 # var b = "text"
 export var  speed=0.0
 var bulletScene=preload("res://Scenes/Bullet.tscn")
+var limits=Vector2(ProjectSettings.get_setting("display/window/size/width"),ProjectSettings.get_setting("display/window/size/height"))
 onready var bulletPos=$Position2D
 var  canShoot=true
 var firingCooldown=0.3
@@ -35,6 +36,7 @@ func _process(delta):
 		motion+=Vector2(0,1)
 	var velocity=motion.normalized()*speed
 	move_and_slide(velocity)
+	position=Vector2(clamp(position.x,20,limits.x-20),clamp(position.y,20,limits.y-20))
 	if(Input.is_action_pressed("Shoot")):
 		open_fire()
 	pass

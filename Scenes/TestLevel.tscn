@@ -10,6 +10,13 @@ script = ExtResource( 4 )
 position = Vector2( 312, 630 )
 speed = 300.0
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 600
+limit_bottom = 720
+
 [node name="Timers" type="Node" parent="."]
 
 [node name="WaveSpawner" type="Timer" parent="Timers"]
@@ -20,6 +27,16 @@ autostart = true
 [node name="BuffSpawner" type="Timer" parent="Timers"]
 wait_time = 15.0
 autostart = true
+
+[node name="Background" type="ParallaxBackground" parent="."]
+follow_viewport_enable = true
+
+[node name="BackLayer" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2( 1, 0.5 )
+motion_mirroring = Vector2( 0, 870 )
+
+[node name="Sprite" type="Sprite" parent="Background/BackLayer"]
+position = Vector2( 322, 310 )
 
 [connection signal="timeout" from="Timers/WaveSpawner" to="." method="_on_WaveSpawner_timeout"]
 [connection signal="timeout" from="Timers/BuffSpawner" to="." method="_on_BuffSpawner_timeout"]

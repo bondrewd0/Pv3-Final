@@ -7,9 +7,20 @@ extends Node2D
 export var speed=0
 var dir= Vector2(1,0)
 var type=''
+var shooterType=0
+var bulletSprite
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	match shooterType:
+		0:
+			bulletSprite=ResourceLoader.load("res://Assets/06.png")
+			$Sprite.scale=Vector2(0.5,0.5)
+		1:
+			bulletSprite=ResourceLoader.load("res://Assets/OvalBullet.png")
+		2:
+			bulletSprite=ResourceLoader.load("res://Assets/RoundBullet.png")
+	$Sprite.texture=bulletSprite
+	
 
 
  #Called every frame. 'delta' is the elapsed time since the previous frame.

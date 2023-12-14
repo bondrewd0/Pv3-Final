@@ -43,6 +43,7 @@ func _fire_Bullet():
 	bulletIns1.rotation=self.rotation
 	bulletIns1.dir=Vector2(bulletDir[0].global_position.x-self.global_position.x,bulletDir[0].global_position.y-self.global_position.y).normalized()
 	bulletIns1.type='EnemyBullet'
+	bulletIns1.shooterType=1
 	bulletIns1.speed=300
 	get_parent().add_child(bulletIns1)
 	var bulletIns2=bulletScene.instance()
@@ -50,6 +51,7 @@ func _fire_Bullet():
 	bulletIns2.rotation=self.rotation+0.5
 	bulletIns2.dir=Vector2(bulletDir[1].global_position.x-self.global_position.x,bulletDir[1].global_position.y-self.global_position.y).normalized()
 	bulletIns2.type='EnemyBullet'
+	bulletIns2.shooterType=1
 	bulletIns2.speed=300
 	get_parent().add_child(bulletIns2)
 	var bulletIns3=bulletScene.instance()
@@ -57,6 +59,7 @@ func _fire_Bullet():
 	bulletIns3.rotation=self.rotation-0.5
 	bulletIns3.dir=Vector2(bulletDir[2].global_position.x-self.global_position.x,bulletDir[2].global_position.y-self.global_position.y).normalized()
 	bulletIns3.type='EnemyBullet'
+	bulletIns3.shooterType=1
 	bulletIns3.speed=300
 	get_parent().add_child(bulletIns3)
 	var bulletIns4=bulletScene.instance()
@@ -64,6 +67,7 @@ func _fire_Bullet():
 	bulletIns4.rotation=rotatorRef.rotation-1
 	bulletIns4.dir=Vector2(bulletDir[3].global_position.x-self.global_position.x,bulletDir[3].global_position.y-self.global_position.y).normalized()
 	bulletIns4.type='EnemyBullet'
+	bulletIns4.shooterType=1
 	bulletIns4.speed=300
 	get_parent().add_child(bulletIns4)
 	var bulletIns5=bulletScene.instance()
@@ -71,6 +75,7 @@ func _fire_Bullet():
 	bulletIns5.rotation=rotatorRef.rotation
 	bulletIns5.dir=Vector2(bulletDir[4].global_position.x-self.global_position.x,bulletDir[4].global_position.y-self.global_position.y).normalized()
 	bulletIns5.type='EnemyBullet'
+	bulletIns5.shooterType=1
 	bulletIns5.speed=300
 	get_parent().add_child(bulletIns5)
 	var bulletIns6=bulletScene.instance()
@@ -78,6 +83,7 @@ func _fire_Bullet():
 	bulletIns6.rotation=rotatorRef.rotation+0.5
 	bulletIns6.dir=Vector2(bulletDir[5].global_position.x-self.global_position.x,bulletDir[5].global_position.y-self.global_position.y).normalized()
 	bulletIns6.type='EnemyBullet'
+	bulletIns6.shooterType=1
 	bulletIns6.speed=300
 	get_parent().add_child(bulletIns6)
 	var bulletIns7=bulletScene.instance()
@@ -85,6 +91,7 @@ func _fire_Bullet():
 	bulletIns7.rotation=rotatorRef.rotation-0.5
 	bulletIns7.dir=Vector2(bulletDir[6].global_position.x-self.global_position.x,bulletDir[6].global_position.y-self.global_position.y).normalized()
 	bulletIns7.type='EnemyBullet'
+	bulletIns7.shooterType=1
 	bulletIns7.speed=300
 	get_parent().add_child(bulletIns7)
 	var bulletIns8=bulletScene.instance()
@@ -92,5 +99,6 @@ func _fire_Bullet():
 	bulletIns8.rotation=rotatorRef.rotation-1
 	bulletIns8.dir=Vector2(bulletDir[7].global_position.x-self.global_position.x,bulletDir[7].global_position.y-self.global_position.y).normalized()
 	bulletIns8.type='EnemyBullet'
+	bulletIns8.shooterType=1
 	bulletIns8.speed=300
 	get_parent().add_child(bulletIns8)

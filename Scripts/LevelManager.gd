@@ -35,8 +35,11 @@ var nextWaveTime=0
 var enemyFireRate=0.0
 var enemySpeed=0
 var waveInfo=[
-[0,0,4,6,0.5,7],
-[4,6,1,40,0.2,5]
+#Type,Positions,amount,time to next wave
+#fire rate, movement
+[0,0,4,6,0.5,6],
+[1,2,3,6,0.5,6],
+[4,6,1,10,0.2,5]
 ]
 var enemyType=0
 var waveNum=0
@@ -67,7 +70,7 @@ func _on_WaveSpawner_timeout():
 	_spawn_Enemies()
 	currSpawnNum+=1
 	if currSpawnNum<enemyNumber:
-		waveTimer.start(2)
+		waveTimer.start(0.5)
 	else:
 		waveTimer.start(nextWaveTime)
 		waveNum+=1
@@ -96,7 +99,6 @@ func _spawn_Enemies():
 	enemyIns.movementTime=enemySpeed
 	add_child(enemyIns)
 
-
 func _wave_Manager(waveindex):
 	enemyType=waveInfo[waveindex][0]
 	waveMov=waveInfo[waveindex][1]
@@ -104,4 +106,4 @@ func _wave_Manager(waveindex):
 	nextWaveTime=waveInfo[waveindex][3]
 	enemyFireRate=waveInfo[waveindex][4]
 	enemySpeed=waveInfo[waveindex][5]
-	
+
