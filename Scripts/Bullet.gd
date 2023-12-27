@@ -33,6 +33,7 @@ func _process(delta):
 				collid._destroy()
 				queue_free()
 			if(type=='EnemyBullet' && collid.type=='Player'):
+				collid._taking_Fire()
 				queue_free()
 
 

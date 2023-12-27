@@ -1,9 +1,5 @@
 extends KinematicBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 export var  speed=0.0
 var bulletScene=preload("res://Scenes/Bullet.tscn")
 var limits=Vector2(ProjectSettings.get_setting("display/window/size/width"),ProjectSettings.get_setting("display/window/size/height"))
@@ -13,9 +9,11 @@ var firingCooldown=0.3
 onready var timerRef=$FireRate
 onready var buffTimerRef=$BuffTimer
 var type='Player'
-# Called when the node enters the scene tree for the first time.
+var life=0
+signal player_hit(health_value)
 func _ready():
-	pass # Replace with function body.
+	life=100
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -66,5 +64,7 @@ func _fireRate_up():
 func _on_Area2D_area_entered(_area):
 	_fireRate_up()
 
-
+func  _taking_Fire():
+	life-=5
+	emit_signal("player_hit",life)
 
