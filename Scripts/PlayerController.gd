@@ -8,6 +8,8 @@ var  canShoot=true
 var firingCooldown=0.3
 onready var timerRef=$FireRate
 onready var buffTimerRef=$BuffTimer
+onready var colliderRef=$CollisionShape2D
+onready var iFrameRef=$DamageCooldown
 var type='Player'
 var life=0
 signal player_hit(health_value)
@@ -67,4 +69,10 @@ func _on_Area2D_area_entered(_area):
 func  _taking_Fire():
 	life-=5
 	emit_signal("player_hit",life)
+	colliderRef.disabled=true
+	iFrameRef.start()
 
+
+
+func _on_DamageCooldown_timeout():
+	colliderRef.disabled=false

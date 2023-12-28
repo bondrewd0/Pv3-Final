@@ -96,8 +96,6 @@ margin_top = 78.0
 margin_right = 914.0
 margin_bottom = 118.0
 rect_scale = Vector2( 1.5, 1.5 )
-visible_characters = 9
-percent_visible = 1.5
 text = "Score:"
 scroll_active = false
 

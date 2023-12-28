@@ -25,6 +25,10 @@ one_shot = true
 [node name="BuffTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="DamageCooldown" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 10
 
@@ -36,4 +40,5 @@ shape = SubResource( 2 )
 
 [connection signal="timeout" from="FireRate" to="." method="_on_FireRate_timeout"]
 [connection signal="timeout" from="BuffTimer" to="." method="_on_BuffTimer_timeout"]
+[connection signal="timeout" from="DamageCooldown" to="." method="_on_DamageCooldown_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
