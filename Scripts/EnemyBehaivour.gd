@@ -13,6 +13,8 @@ var movementTime=10.0
 export var fireRate =2
 var finalPos=Vector2(0,0)
 var hitpoints=1
+signal pointsUp(score)
+export var points:int=100
 func _ready():
 	fireRef.start(fireRate)
 	_create_bullet_Targets()
@@ -40,6 +42,7 @@ func _fire_Bullet():
 func _destroy():
 	hitpoints-=1
 	if(hitpoints==0):
+		emit_signal("pointsUp",points)
 		queue_free()
 
 func _on_Fire_timeout():

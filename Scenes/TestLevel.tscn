@@ -44,10 +44,15 @@ shader_param/scroll_speed = 0.1
 [node name="TestLevel" type="Node"]
 script = ExtResource( 4 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 512, 360 )
+current = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-margin_right = 783.0
+margin_right = 1026.0
 margin_bottom = 725.0
 color = Color( 0, 0, 0, 1 )
 
@@ -55,8 +60,8 @@ color = Color( 0, 0, 0, 1 )
 material = SubResource( 4 )
 anchor_right = 0.008
 anchor_bottom = 0.004
-margin_right = 760.2
-margin_bottom = 1205.12
+margin_right = 1077.81
+margin_bottom = 1205.6
 rect_scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 3 )
 expand = true
@@ -64,13 +69,16 @@ stretch_mode = 2
 
 [node name="StarBackground" type="TextureRect" parent="CanvasLayer"]
 material = SubResource( 2 )
-margin_right = 1600.0
-margin_bottom = 1200.0
+margin_left = -153.0
+margin_top = -31.0
+margin_right = 871.0
+margin_bottom = 993.0
+rect_pivot_offset = Vector2( 439, 676 )
 texture = ExtResource( 2 )
 stretch_mode = 2
 
 [node name="HealthBar" type="Node2D" parent="CanvasLayer"]
-position = Vector2( 665, 585 )
+position = Vector2( 922, 509 )
 script = ExtResource( 6 )
 
 [node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/HealthBar"]
@@ -82,16 +90,25 @@ texture_progress = ExtResource( 5 )
 fill_mode = 5
 tint_progress = Color( 0.00784314, 0.980392, 0.866667, 1 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 312, 630 )
-speed = 250.0
+[node name="ScoreText" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 874.0
+margin_top = 78.0
+margin_right = 914.0
+margin_bottom = 118.0
+rect_scale = Vector2( 1.5, 1.5 )
+visible_characters = 9
+percent_visible = 1.5
+text = "Score:"
+scroll_active = false
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-current = true
-limit_left = 0
-limit_top = 0
-limit_right = 600
-limit_bottom = 720
+[node name="PointsText" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 954.0
+margin_top = 80.0
+margin_right = 994.0
+margin_bottom = 120.0
+rect_scale = Vector2( 1.5, 1.5 )
+text = "0
+"
 
 [node name="Timers" type="Node" parent="."]
 
@@ -103,6 +120,10 @@ autostart = true
 [node name="BuffSpawner" type="Timer" parent="Timers"]
 wait_time = 15.0
 autostart = true
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 525, 549 )
+speed = 300.0
 
 [connection signal="timeout" from="Timers/WaveSpawner" to="." method="_on_WaveSpawner_timeout"]
 [connection signal="timeout" from="Timers/BuffSpawner" to="." method="_on_BuffSpawner_timeout"]

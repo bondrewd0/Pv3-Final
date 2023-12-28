@@ -47,9 +47,12 @@ var enemyIns
 onready var viewportSize=get_viewport().get_size_override()
 onready var buffTimer=$Timers/BuffSpawner
 onready var waveTimer=$Timers/WaveSpawner
+onready var scoreRef=$CanvasLayer/PointsText
+var playerPoints=0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_wave_Manager(waveNum)
+	scoreRef.text=str(playerPoints)
 	pass
 
 func _on_BuffSpawner_timeout():
@@ -97,6 +100,7 @@ func _spawn_Enemies():
 	enemyIns.finalPos=endPos[waveMov]
 	enemyIns.fireRate=enemyFireRate
 	enemyIns.movementTime=enemySpeed
+	enemyIns.connect("pointsUp",self,"_score_Up")
 	add_child(enemyIns)
 
 func _wave_Manager(waveindex):
@@ -107,3 +111,6 @@ func _wave_Manager(waveindex):
 	enemyFireRate=waveInfo[waveindex][4]
 	enemySpeed=waveInfo[waveindex][5]
 
+func _score_Up(points):
+	playerPoints+=points
+	scoreRef.text=str(playerPoints)
