@@ -11,22 +11,22 @@ var enemyV3=preload("res://Scenes/Enemies/EnemyMultiShoot.tscn")
 var enemyV4=preload("res://Scenes/Enemies/SplashEnemy.tscn")
 var enemyV5=preload("res://Scenes/Enemies/BossEnemy.tscn")
 var positions=[
-Vector2(580,20),
-Vector2(20,20),
-Vector2(580,340),
-Vector2(20,340),
-Vector2(100,700),
-Vector2(500,700),
-Vector2(300,20)
+Vector2(1160,-20),
+Vector2(-20,-20),
+Vector2(1160,360),
+Vector2(-20,360),
+Vector2(290,740),
+Vector2(870,740),
+Vector2(580,-20)
 ]
 var endPos=[
-Vector2(-100,360),
-Vector2(700,360),
+Vector2(-100,320),
+Vector2(1240,320),
 Vector2(-100,340),
-Vector2(700,340),
-Vector2(100,-100),
-Vector2(500,-100),
-Vector2(300,100)
+Vector2(1240,340),
+Vector2(290,-100),
+Vector2(870,-100),
+Vector2(580,100)
 ]
 var waveMov=0
 var enemyNumber=0

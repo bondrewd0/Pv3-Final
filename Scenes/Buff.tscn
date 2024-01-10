@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Bufo.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Buff1.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.7849, 12.7121 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 100.0
 
 [node name="Buff" type="Node2D"]
 script = ExtResource( 1 )
@@ -21,5 +24,12 @@ shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
+[node name="PickUpRange" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpRange"]
+shape = SubResource( 2 )
+
 [connection signal="area_entered" from="BuffSprite/Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="area_entered" from="PickUpRange" to="." method="_on_PickUpRange_area_entered"]

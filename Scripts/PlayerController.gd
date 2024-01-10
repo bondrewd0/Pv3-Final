@@ -36,7 +36,7 @@ func _process(delta):
 		motion+=Vector2(0,1)
 	var velocity=motion.normalized()*speed
 	move_and_slide(velocity)
-	position=Vector2(clamp(position.x,20,limits.x-20),clamp(position.y,20,limits.y-20))
+	position=Vector2(clamp(position.x,20,limits.x-140),clamp(position.y,20,limits.y-20))
 	if(Input.is_action_pressed("Shoot")):
 		open_fire()
 	pass
