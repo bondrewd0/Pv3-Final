@@ -10,13 +10,14 @@ onready var timerRef=$FireRate
 onready var buffTimerRef=$BuffTimer
 onready var colliderRef=$CollisionShape2D
 onready var iFrameRef=$DamageCooldown
+onready var explotion=$ExplotionAnim
 var type='Player'
 var life=0
+export var damage=0
 signal player_hit(health_value)
+signal playerDead
 func _ready():
 	life=100
-	
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # warning-ignore:unused_argument
@@ -67,12 +68,21 @@ func _on_Area2D_area_entered(_area):
 	_fireRate_up()
 
 func  _taking_Fire():
-	life-=5
+	life-=damage
 	emit_signal("player_hit",life)
 	colliderRef.disabled=true
 	iFrameRef.start()
-
-
+	if(life==0):
+		_death()
 
 func _on_DamageCooldown_timeout():
 	colliderRef.disabled=false
+
+func _death():
+	$AudioStreamPlayer.play()
+	$Sprite.visible=false
+	explotion.visible=true
+	var anim=$ExplotionAnim/AnimationPlayer
+	anim.play("Boom")
+	emit_signal("playerDead")
+	

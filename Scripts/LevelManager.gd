@@ -39,7 +39,7 @@ var waveInfo=[
 #fire rate, movement
 [0,0,4,6,0.5,6],
 [1,2,3,6,0.5,6],
-[4,6,1,10,0.2,5]
+[4,6,1,30,0.2,5]
 ]
 var enemyType=0
 var waveNum=0
@@ -48,11 +48,15 @@ onready var viewportSize=get_viewport().get_size_override()
 onready var buffTimer=$Timers/BuffSpawner
 onready var waveTimer=$Timers/WaveSpawner
 onready var scoreRef=$CanvasLayer/PointsText
+onready var bgMusic=$SoundEffects/BackgroundMusic
 var playerPoints=0
+var gameOn=false
+var onBoss=false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_wave_Manager(waveNum)
 	scoreRef.text=str(playerPoints)
+	gameOn=true
 	pass
 
 func _on_BuffSpawner_timeout():
@@ -70,17 +74,19 @@ func _generate_Random_Pos():
 	return  Vector2(posX,posY)
 
 func _on_WaveSpawner_timeout():
-	_spawn_Enemies()
-	currSpawnNum+=1
-	if currSpawnNum<enemyNumber:
-		waveTimer.start(0.5)
-	else:
-		waveTimer.start(nextWaveTime)
-		waveNum+=1
-		if waveNum==waveInfo.size():
-			waveNum=0
-		_wave_Manager(waveNum)
-		currSpawnNum=0
+	if gameOn:
+		_spawn_Enemies()
+		currSpawnNum+=1
+		if currSpawnNum<enemyNumber:
+			waveTimer.start(0.5)
+		else:
+			waveTimer.start(nextWaveTime)
+			waveNum+=1
+			if waveNum==waveInfo.size():
+				waveNum=0
+			_wave_Manager(waveNum)
+			currSpawnNum=0
+	pass
 
 func _spawn_Enemies():
 	match enemyType:
@@ -95,7 +101,8 @@ func _spawn_Enemies():
 		4:
 			enemyIns=enemyV5.instance()
 			enemyIns.hitpoints=40
-			
+			_boss_Wave()
+			onBoss=true
 	enemyIns.position=positions[waveMov]
 	enemyIns.finalPos=endPos[waveMov]
 	enemyIns.fireRate=enemyFireRate
@@ -112,5 +119,30 @@ func _wave_Manager(waveindex):
 	enemySpeed=waveInfo[waveindex][5]
 
 func _score_Up(points):
+	$SoundEffects/EnemyDeath.play()
 	playerPoints+=points
 	scoreRef.text=str(playerPoints)
+
+func _process(_delta):
+	if !bgMusic.playing && gameOn && !onBoss:
+		bgMusic.play()
+	if !gameOn:
+		bgMusic.volume_db-=0.35
+
+
+func _on_Player_playerDead():
+	gameOn=false
+	var timer:Timer=Timer.new()
+	add_child(timer)
+	timer.one_shot=true
+	timer.autostart=true
+	timer.wait_time=1.3
+	timer.connect("timeout",self,"_disable_Player")
+	timer.start()
+
+func _disable_Player():
+	get_node("Player").queue_free()
+
+func _boss_Wave():
+	bgMusic.stop()
+	$SoundEffects/BossMusic.play()

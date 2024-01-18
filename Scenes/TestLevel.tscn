@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Stars.png" type="Texture" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://Assets/planeta1.png" type="Texture" id=7]
 [ext_resource path="res://Assets/dust1.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Blank.png" type="Texture" id=9]
+[ext_resource path="res://fight.wav" type="AudioStream" id=10]
+[ext_resource path="res://explosion.wav" type="AudioStream" id=11]
+[ext_resource path="res://Orbital Colossus.mp3" type="AudioStream" id=12]
 
 [sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
@@ -63,6 +66,21 @@ shader_param/scroll_speed = 0.1
 
 [node name="TestLevel" type="Node"]
 script = ExtResource( 4 )
+
+[node name="SoundEffects" type="Node" parent="."]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="SoundEffects"]
+stream = ExtResource( 10 )
+volume_db = -10.0
+autoplay = true
+
+[node name="EnemyDeath" type="AudioStreamPlayer" parent="SoundEffects"]
+stream = ExtResource( 11 )
+volume_db = -20.0
+
+[node name="BossMusic" type="AudioStreamPlayer" parent="SoundEffects"]
+stream = ExtResource( 12 )
+volume_db = -10.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 641, 363 )
@@ -160,6 +178,8 @@ autostart = true
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 525, 549 )
 speed = 300.0
+damage = 10
 
 [connection signal="timeout" from="Timers/WaveSpawner" to="." method="_on_WaveSpawner_timeout"]
 [connection signal="timeout" from="Timers/BuffSpawner" to="." method="_on_BuffSpawner_timeout"]
+[connection signal="playerDead" from="Player" to="." method="_on_Player_playerDead"]
