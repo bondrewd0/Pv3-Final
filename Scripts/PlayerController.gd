@@ -11,6 +11,7 @@ onready var buffTimerRef=$BuffTimer
 onready var colliderRef=$CollisionShape2D
 onready var iFrameRef=$DamageCooldown
 onready var explotion=$ExplotionAnim
+onready var hit=$HurtSound
 var type='Player'
 var life=0
 export var damage=0
@@ -69,6 +70,7 @@ func _on_Area2D_area_entered(_area):
 
 func  _taking_Fire():
 	life-=damage
+	hit.play()
 	emit_signal("player_hit",life)
 	colliderRef.disabled=true
 	iFrameRef.start()

@@ -10,6 +10,7 @@ var enemyV2=preload("res://Scenes/Enemies/SniperEnemy.tscn")
 var enemyV3=preload("res://Scenes/Enemies/EnemyMultiShoot.tscn")
 var enemyV4=preload("res://Scenes/Enemies/SplashEnemy.tscn")
 var enemyV5=preload("res://Scenes/Enemies/BossEnemy.tscn")
+var pauseRef=preload("res://Scenes/PauseMenu.tscn")
 var positions=[
 Vector2(1160,-20),
 Vector2(-20,-20),
@@ -128,6 +129,11 @@ func _process(_delta):
 		bgMusic.play()
 	if !gameOn:
 		bgMusic.volume_db-=0.35
+	if Input.is_action_pressed("Pause"):
+		print("check")
+		var pausemode=pauseRef.instance()
+		add_child(pausemode)
+		get_tree().paused=true
 
 
 func _on_Player_playerDead():
