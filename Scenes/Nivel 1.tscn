@@ -71,7 +71,7 @@ script = ExtResource( 2 )
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="SoundEffects"]
 stream = ExtResource( 6 )
-volume_db = -10.0
+volume_db = -20.0
 autoplay = true
 
 [node name="EnemyDeath" type="AudioStreamPlayer" parent="SoundEffects"]
@@ -177,7 +177,7 @@ autostart = true
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 525, 549 )
-speed = 300.0
+speed = 350.0
 damage = 10
 
 [connection signal="timeout" from="Timers/WaveSpawner" to="." method="_on_WaveSpawner_timeout"]

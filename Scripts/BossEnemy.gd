@@ -12,7 +12,8 @@ var bulletDir=[
 ]
 var rotatorRef= Node2D.new()
 var reverseRotator=Node2D.new()
- 
+onready var explotion=$ExplotionAnim 
+
 func _create_bullet_Targets():
 	add_child(rotatorRef)
 	add_child(reverseRotator)
@@ -102,3 +103,26 @@ func _fire_Bullet():
 	bulletIns8.shooterType=1
 	bulletIns8.speed=300
 	get_parent().add_child(bulletIns8)
+	
+func _destroy():
+	hitpoints-=1
+	if hitpoints==0:
+		_death()
+		var timer:Timer=Timer.new()
+		add_child(timer)
+		timer.one_shot=true
+		timer.autostart=true
+		timer.wait_time=1.3
+		timer.connect("timeout",self,"_disable_Boss")
+		timer.start()
+
+func _disable_Boss():
+	emit_signal("pointsUp",points)
+	queue_free() 
+
+func _death():
+	$DeathSound.play()
+	$Sprite.visible=false
+	explotion.visible=true
+	var anim=$ExplotionAnim/AnimationPlayer
+	anim.play("Explotion")

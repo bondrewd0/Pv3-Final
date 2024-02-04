@@ -23,24 +23,21 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # warning-ignore:unused_argument
 func _process(delta):
-
-	var motion=Vector2()
-	if(Input.is_action_pressed("Right")):
-		motion+=Vector2(1,0)
-	
-	if(Input.is_action_pressed("Left")):
-		motion+=Vector2(-1,0)
-	
-	if(Input.is_action_pressed("Up")):
-		motion+=Vector2(0,-1)
-	
-	if(Input.is_action_pressed("Down")):
-		motion+=Vector2(0,1)
-	var velocity=motion.normalized()*speed
-	move_and_slide(velocity)
-	position=Vector2(clamp(position.x,20,limits.x-140),clamp(position.y,20,limits.y-20))
-	if(Input.is_action_pressed("Shoot")):
-		open_fire()
+	if life!=0:
+		var motion=Vector2()
+		if(Input.is_action_pressed("Right")):
+			motion+=Vector2(1,0)
+		if(Input.is_action_pressed("Left")):
+			motion+=Vector2(-1,0)
+		if(Input.is_action_pressed("Up")):
+			motion+=Vector2(0,-1)
+		if(Input.is_action_pressed("Down")):
+			motion+=Vector2(0,1)
+		var velocity=motion.normalized()*speed
+		move_and_slide(velocity)
+		position=Vector2(clamp(position.x,20,limits.x-140),clamp(position.y,20,limits.y-20))
+		if(Input.is_action_pressed("Shoot")):
+			open_fire()
 	pass
 
 func open_fire():
@@ -50,6 +47,7 @@ func open_fire():
 		var bulletInstance=bulletScene.instance()
 		bulletInstance.global_position=bulletPos.global_position
 		bulletInstance.dir=Vector2(0,-1)
+		bulletInstance.speed=600
 		bulletInstance.type='PlayerBullet'
 		get_parent().add_child(bulletInstance)
 	pass
@@ -74,6 +72,7 @@ func  _taking_Fire():
 	emit_signal("player_hit",life)
 	colliderRef.disabled=true
 	iFrameRef.start()
+	$Sprite/DamageAnim.play("ScenesDamage")
 	if(life==0):
 		_death()
 
@@ -81,7 +80,7 @@ func _on_DamageCooldown_timeout():
 	colliderRef.disabled=false
 
 func _death():
-	$AudioStreamPlayer.play()
+	$DeathSound.play()
 	$Sprite.visible=false
 	explotion.visible=true
 	var anim=$ExplotionAnim/AnimationPlayer

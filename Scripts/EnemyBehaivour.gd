@@ -24,7 +24,7 @@ func _ready():
 	add_child(timer)
 	timer.one_shot=true
 	timer.autostart=true
-	timer.wait_time=3
+	timer.wait_time=1
 	timer.connect("timeout",self,"_on_SpawnProtection_timeout")
 	timer.start()
 

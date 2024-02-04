@@ -5,12 +5,14 @@ extends Node
 # var a = 2
 # var b = "text"
 var buffNode= preload("res://Scenes/Buff.tscn")
-var enemyV1=preload("res://Scenes/Enemies/NormalEnemy.tscn")
-var enemyV2=preload("res://Scenes/Enemies/SniperEnemy.tscn")
-var enemyV3=preload("res://Scenes/Enemies/EnemyMultiShoot.tscn")
-var enemyV4=preload("res://Scenes/Enemies/SplashEnemy.tscn")
-var enemyV5=preload("res://Scenes/Enemies/BossEnemy.tscn")
+var enemyV1=preload("res://Scenes/Enemies/NormalEnemy.tscn")#Type 0
+var enemyV2=preload("res://Scenes/Enemies/SniperEnemy.tscn")#Type 1
+var enemyV3=preload("res://Scenes/Enemies/EnemyMultiShoot.tscn")#Type 2
+var enemyV4=preload("res://Scenes/Enemies/SplashEnemy.tscn")#Type 3
+var enemyV5=preload("res://Scenes/Enemies/BossEnemy.tscn")#Type 4
 var pauseRef=preload("res://Scenes/PauseMenu.tscn")
+var deathRef=preload("res://Scenes/DeathScreen.tscn")
+var victoryRef=preload("res://Scenes/VictoryScreen.tscn")
 var positions=[
 Vector2(1160,-20),
 Vector2(-20,-20),
@@ -37,9 +39,15 @@ var enemyFireRate=0.0
 var enemySpeed=0
 var waveInfo=[
 #Type,Positions,amount,time to next wave
-#fire rate, movement
-[0,0,4,6,0.5,6],
-[1,2,3,6,0.5,6],
+#fire rate, movement speed
+[0,0,5,0.4,0.5,6],
+[0,1,5,5,0.5,6],
+[1,4,3,0.5,0.5,6],
+[1,5,3,5,0.5,6],
+[2,0,2,0.5,0.5,6],
+[2,1,2,5,0.5,6],
+[3,2,1,0.5,0.5,6],
+[3,3,1,5,0.5,6],
 [4,6,1,30,0.2,5]
 ]
 var enemyType=0
@@ -123,6 +131,12 @@ func _score_Up(points):
 	$SoundEffects/EnemyDeath.play()
 	playerPoints+=points
 	scoreRef.text=str(playerPoints)
+	if points==1000:
+		playerPoints+=$Player.life*10
+		var victoryScreen=victoryRef.instance()
+		victoryScreen.pPoints=str(playerPoints)
+		add_child(victoryScreen)
+		get_tree().paused=true
 
 func _process(_delta):
 	if !bgMusic.playing && gameOn && !onBoss:
@@ -130,7 +144,6 @@ func _process(_delta):
 	if !gameOn:
 		bgMusic.volume_db-=0.35
 	if Input.is_action_pressed("Pause"):
-		print("check")
 		var pausemode=pauseRef.instance()
 		add_child(pausemode)
 		get_tree().paused=true
@@ -145,9 +158,14 @@ func _on_Player_playerDead():
 	timer.wait_time=1.3
 	timer.connect("timeout",self,"_disable_Player")
 	timer.start()
+	
 
 func _disable_Player():
+	var gameOverScreen=deathRef.instance()
 	get_node("Player").queue_free()
+	gameOverScreen.pPoints=str(playerPoints)
+	add_child(gameOverScreen)
+	get_tree().paused=true
 
 func _boss_Wave():
 	bgMusic.stop()
