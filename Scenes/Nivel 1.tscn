@@ -5,13 +5,14 @@
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/roundbar.png" type="Texture" id=4]
 [ext_resource path="res://Assets/background.png" type="Texture" id=5]
-[ext_resource path="res://fight.wav" type="AudioStream" id=6]
-[ext_resource path="res://explosion.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Sounds/fight.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Sounds/explosion.wav" type="AudioStream" id=7]
 [ext_resource path="res://Assets/Blank.png" type="Texture" id=8]
 [ext_resource path="res://Assets/dust1.png" type="Texture" id=9]
-[ext_resource path="res://Orbital Colossus.mp3" type="AudioStream" id=10]
+[ext_resource path="res://Assets/Sounds/Orbital Colossus.mp3" type="AudioStream" id=10]
 [ext_resource path="res://Assets/Stars.png" type="Texture" id=11]
 [ext_resource path="res://Assets/planeta1.png" type="Texture" id=12]
+
 
 [sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;

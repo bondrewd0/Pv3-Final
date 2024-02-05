@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/snd_hurt1.wav-eb0aeea56b57ce56251ab7b10b7931ed.sample"
+path="res://.import/explosion.wav-bc16692f24ce8829345116ef70c39dbd.sample"
 
 [deps]
 
-source_file="res://snd_hurt1.wav"
-dest_files=[ "res://.import/snd_hurt1.wav-eb0aeea56b57ce56251ab7b10b7931ed.sample" ]
+source_file="res://Assets/Sounds/explosion.wav"
+dest_files=[ "res://.import/explosion.wav-bc16692f24ce8829345116ef70c39dbd.sample" ]
 
 [params]
 

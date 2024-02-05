@@ -22,7 +22,6 @@ _global_script_class_icons={
 
 config/name="Final PV3"
 run/main_scene="res://Scenes/Menu.tscn"
-config/icon="res://icon.png"
 
 [display]
 

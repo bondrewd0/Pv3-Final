@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/fight.wav-1b509ab1d72826a4b52bb100275f58fe.sample"
+path="res://.import/fight.wav-96031411609b6e374071766ad0a358e1.sample"
 
 [deps]
 
-source_file="res://fight.wav"
-dest_files=[ "res://.import/fight.wav-1b509ab1d72826a4b52bb100275f58fe.sample" ]
+source_file="res://Assets/Sounds/fight.wav"
+dest_files=[ "res://.import/fight.wav-96031411609b6e374071766ad0a358e1.sample" ]
 
 [params]
 
