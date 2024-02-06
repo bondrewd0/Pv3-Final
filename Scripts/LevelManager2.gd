@@ -5,7 +5,7 @@ var enemyV1=preload("res://Scenes/Enemies/NormalEnemy.tscn")#Type 0
 var enemyV2=preload("res://Scenes/Enemies/SniperEnemy.tscn")#Type 1
 var enemyV3=preload("res://Scenes/Enemies/EnemyMultiShoot.tscn")#Type 2
 var enemyV4=preload("res://Scenes/Enemies/SplashEnemy.tscn")#Type 3
-var enemyV5=preload("res://Scenes/Enemies/BossEnemy.tscn")#Type 4
+var enemyV5=preload("res://Scenes/Enemies/BossEnemy2.tscn")#Type 4
 var pauseRef=preload("res://Scenes/PauseMenu.tscn")
 var deathRef=preload("res://Scenes/DeathScreen.tscn")
 var victoryRef=preload("res://Scenes/VictoryScreen.tscn")
@@ -45,9 +45,9 @@ var waveInfo=[
 #[2,1,3,5,0.5,6],
 #[3,2,2,0.5,0.5,6],
 #[3,3,2,5,0.5,6],
-[4,6,1,3,0.2,5],#Final Boss
-[0,2,4,0.4,0.8,10],
-[0,3,4,15,0.8,10]
+[4,6,1,300,0.2,5],#Final Boss
+#[0,2,4,0.4,0.8,10],
+#[0,3,4,15,0.8,10]
 ]
 var enemyType=0
 var waveNum=0
@@ -82,7 +82,6 @@ func _generate_Random_Pos():
 	return  Vector2(posX,posY)
 
 func _on_WaveSpawner_timeout():
-	print(1)
 	if gameOn:
 		_spawn_Enemies()
 		currSpawnNum+=1

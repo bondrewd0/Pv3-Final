@@ -12,6 +12,7 @@ var bulletDir=[
 ]
 var rotatorRef= Node2D.new()
 var reverseRotator=Node2D.new()
+
 onready var explotion=$ExplotionAnim 
 
 func _create_bullet_Targets():

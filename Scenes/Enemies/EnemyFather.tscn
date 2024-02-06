@@ -4,7 +4,6 @@
 [ext_resource path="res://Assets/Silver Fighter.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Sounds/explosion.wav" type="AudioStream" id=3]
 
-
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 22.2862, 21.1146 )
 

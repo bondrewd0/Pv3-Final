@@ -5,7 +5,7 @@ var bulletScene=preload("res://Scenes/Bullet.tscn")
 var limits=Vector2(ProjectSettings.get_setting("display/window/size/width"),ProjectSettings.get_setting("display/window/size/height"))
 onready var bulletPos=$Position2D
 var  canShoot=true
-var firingCooldown=0.3
+export var firingCooldown=0.3
 onready var timerRef=$FireRate
 onready var buffTimerRef=$BuffTimer
 onready var colliderRef=$CollisionShape2D
@@ -47,7 +47,7 @@ func open_fire():
 		var bulletInstance=bulletScene.instance()
 		bulletInstance.global_position=bulletPos.global_position
 		bulletInstance.dir=Vector2(0,-1)
-		bulletInstance.speed=600
+		bulletInstance.speed=650
 		bulletInstance.type='PlayerBullet'
 		get_parent().add_child(bulletInstance)
 	pass

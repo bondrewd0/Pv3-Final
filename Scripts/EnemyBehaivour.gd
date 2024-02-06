@@ -12,7 +12,7 @@ var bulletScene=preload("res://Scenes/Bullet.tscn")
 var movementTime=10.0
 export var fireRate =2
 var finalPos=Vector2(0,0)
-var hitpoints=1
+export var hitpoints=1
 signal pointsUp(score)
 export var points:int=100
 func _ready():
