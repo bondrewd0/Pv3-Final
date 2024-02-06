@@ -35,19 +35,20 @@ var nextWaveTime=0
 var enemyFireRate=0.0
 var enemySpeed=0
 var waveInfo=[
-#Type,Positions,amount,time to next wave
-#fire rate, movement speed
-#[0,0,5,0.4,0.5,6],
-#[0,1,5,5,0.5,6],
-#[1,4,3,0.5,0.5,6],
-#[1,5,3,5,0.5,6],
-#[2,0,3,0.5,0.5,6],
-#[2,1,3,5,0.5,6],
-#[3,2,2,0.5,0.5,6],
-#[3,3,2,5,0.5,6],
-[4,6,1,3,0.2,5],#Final Boss
-[0,2,4,0.4,0.8,10],
-[0,3,4,15,0.8,10]
+#Type  #Pos #amount #next wave  #firerate  #speed
+[    0,    0,    5,    0.4,    0.5,    6],
+[    0,    1,    5,    5,    0.5,    6],
+[    1,    4,    3,    0.5,    0.5,    6],
+[    1,    5,    3,    5,    0.5,    6],
+[    2,    0,    3,    0.5,    0.5,    6],
+[    2,    1,    3,    5,    0.5,    6],
+[    3,    2,    2,    0.5,    0.5,    6],
+[    3,    3,    2,    5,    0.5,    6],
+[    4,    6,    1,    3,    0.2,    5],#Final Boss
+[    0,    2,    2,    0.4,    0.8,    10],
+[    0,    3,    2,    2,    0.4,    10],
+[    1,    0,    1,    0.2,    0.8,    5],
+[    1,    1,    1,    5,    0.8,    5]
 ]
 var enemyType=0
 var waveNum=0
@@ -82,7 +83,6 @@ func _generate_Random_Pos():
 	return  Vector2(posX,posY)
 
 func _on_WaveSpawner_timeout():
-	print(1)
 	if gameOn:
 		_spawn_Enemies()
 		currSpawnNum+=1

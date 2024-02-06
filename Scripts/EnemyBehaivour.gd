@@ -13,6 +13,7 @@ var movementTime=10.0
 export var fireRate =2
 var finalPos=Vector2(0,0)
 export var hitpoints=1
+export var spawnProtection=1
 signal pointsUp(score)
 export var points:int=100
 func _ready():
@@ -24,7 +25,7 @@ func _ready():
 	add_child(timer)
 	timer.one_shot=true
 	timer.autostart=true
-	timer.wait_time=1
+	timer.wait_time=spawnProtection
 	timer.connect("timeout",self,"_on_SpawnProtection_timeout")
 	timer.start()
 

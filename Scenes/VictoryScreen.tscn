@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/VictoryScreen.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sounds/level_finished.mp3" type="AudioStream" id=2]
 
 [node name="Control" type="Control"]
 pause_mode = 2
@@ -53,6 +54,11 @@ margin_right = 84.0
 margin_bottom = 14.6667
 custom_colors/font_color = Color( 0.956863, 0.960784, 0.0235294, 1 )
 text = "0"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -10.0
+autoplay = true
 
 [connection signal="pressed" from="ColorRect/NextLevel" to="." method="_on_NextLevel_pressed"]
 [connection signal="pressed" from="ColorRect/Menu" to="." method="_on_Menu_pressed"]
