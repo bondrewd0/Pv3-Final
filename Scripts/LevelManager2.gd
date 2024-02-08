@@ -9,12 +9,12 @@ var enemyV5=preload("res://Scenes/Enemies/BossEnemy2.tscn")#Type 4
 var pauseRef=preload("res://Scenes/PauseMenu.tscn")
 var deathRef=preload("res://Scenes/DeathScreen.tscn")
 var victoryRef=preload("res://Scenes/VictoryScreen.tscn")
-var nexlvlRef="res://Scenes/Nivel2.tscn"
+var nexlvlRef="res://Scenes/Menu.tscn"
 var positions=[
 Vector2(1160,-20),
 Vector2(-20,-20),
-Vector2(1160,360),
-Vector2(-20,360),
+Vector2(1160,200),
+Vector2(-20,200),
 Vector2(290,740),
 Vector2(870,740),
 Vector2(580,-20)
@@ -47,7 +47,7 @@ var waveInfo=[
 [    2,    0,    4,    0.5,    0.5,    8],
 [    2,    1,    4,    1,    0.5,    8],
 [    1,    4,    1,    0.5,    0.5,    10],
-[    1,    5,    1,    13,    0.5,    10],
+[    1,    5,    1,    10,    0.5,    10],
 [    4,    6,    1,    5,    0.2,    5],#Final Boss
 [    3,    2,    1,    0.4,    0.5,    15],
 [    3,    3,    1,    15,    0.5,    15]

@@ -13,8 +13,8 @@ var nexlvlRef="res://Scenes/Nivel2.tscn"
 var positions=[
 Vector2(1160,-20),
 Vector2(-20,-20),
-Vector2(1160,360),
-Vector2(-20,360),
+Vector2(1160,200),
+Vector2(-20,200),
 Vector2(290,740),
 Vector2(870,740),
 Vector2(580,-20)
