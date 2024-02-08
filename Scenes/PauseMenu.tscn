@@ -15,17 +15,24 @@ color = Color( 0.0509804, 0.141176, 0.196078, 0.584314 )
 
 [node name="Continue" type="Button" parent="ColorRect"]
 margin_left = 452.0
-margin_top = 243.0
+margin_top = 200.0
 margin_right = 829.0
-margin_bottom = 338.0
+margin_bottom = 295.0
 text = "Continue"
 
 [node name="Quit" type="Button" parent="ColorRect"]
 margin_left = 452.0
-margin_top = 390.0
+margin_top = 500.0
 margin_right = 829.0
-margin_bottom = 485.0
+margin_bottom = 595.0
 text = "Quit game"
+
+[node name="Settings" type="Button" parent="ColorRect"]
+margin_left = 452.0
+margin_top = 350.0
+margin_right = 829.0
+margin_bottom = 445.0
+text = "Settings"
 
 [node name="Label" type="Label" parent="ColorRect"]
 margin_left = 542.0
@@ -38,3 +45,4 @@ text = "Paused
 
 [connection signal="pressed" from="ColorRect/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="ColorRect/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="ColorRect/Settings" to="." method="_on_Settings_pressed"]

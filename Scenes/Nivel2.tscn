@@ -9,7 +9,7 @@
 [ext_resource path="res://Assets/roundbar.png" type="Texture" id=7]
 [ext_resource path="res://Assets/background.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Blank.png" type="Texture" id=9]
-[ext_resource path="res://Scenes/n-Dimensions (Main Theme).mp3" type="AudioStream" id=10]
+[ext_resource path="res://Assets/Sounds/n-Dimensions (Main Theme).mp3" type="AudioStream" id=10]
 [ext_resource path="res://Scripts/HealthBar.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=12]
 
@@ -73,14 +73,17 @@ script = ExtResource( 1 )
 stream = ExtResource( 10 )
 volume_db = -20.0
 autoplay = true
+bus = "Music"
 
 [node name="EnemyDeath" type="AudioStreamPlayer" parent="SoundEffects"]
 stream = ExtResource( 2 )
 volume_db = -20.0
+bus = "Effects"
 
 [node name="BossMusic" type="AudioStreamPlayer" parent="SoundEffects"]
 stream = ExtResource( 4 )
 volume_db = -10.0
+bus = "Music"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1

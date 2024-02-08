@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/n-Dimensions (Main Theme).mp3-9c0eb6dec58c7c72e3b4e8745145074e.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/n-Dimensions (Main Theme).mp3"
+dest_files=[ "res://.import/n-Dimensions (Main Theme).mp3-9c0eb6dec58c7c72e3b4e8745145074e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
