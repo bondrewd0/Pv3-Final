@@ -1,19 +1,37 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scripts/LevelManager2.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sounds/explosion.wav" type="AudioStream" id=2]
-[ext_resource path="res://Assets/dust1.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Nebula1.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sounds/big_boss_2_0.wav" type="AudioStream" id=4]
 [ext_resource path="res://Assets/Stars.png" type="Texture" id=5]
-[ext_resource path="res://Assets/planeta1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sun.png" type="Texture" id=6]
 [ext_resource path="res://Assets/roundbar.png" type="Texture" id=7]
 [ext_resource path="res://Assets/background.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Blank.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Sounds/n-Dimensions (Main Theme).mp3" type="AudioStream" id=10]
 [ext_resource path="res://Scripts/HealthBar.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Red Planet.png" type="Texture" id=13]
 
-[sub_resource type="Shader" id=6]
+[sub_resource type="Shader" id=11]
+code = "shader_type canvas_item;
+
+uniform vec4 color_mod:hint_color=vec4(0,0,0,1);
+
+void fragment(){
+COLOR = vec4(color_mod.rgb, texture(TEXTURE, UV).a * color_mod.a);
+}
+
+
+
+"
+
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 11 )
+shader_param/color_mod = Color( 0.121569, 0.0313726, 0.00392157, 1 )
+
+[sub_resource type="Shader" id=13]
 code = "shader_type canvas_item;
 
 uniform vec2 dir=vec2(0.0,-0.07);
@@ -26,9 +44,9 @@ void fragment(){
 "
 
 [sub_resource type="ShaderMaterial" id=7]
-shader = SubResource( 6 )
+shader = SubResource( 13 )
 shader_param/dir = Vector2( 0, -0.09 )
-shader_param/scroll_speed = 0.1
+shader_param/scroll_speed = 0.15
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -42,10 +60,15 @@ void fragment(){
 }
 "
 
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 3 )
+shader_param/dir = Vector2( 0, -0.1 )
+shader_param/scroll_speed = 0.06
+
 [sub_resource type="ShaderMaterial" id=8]
 shader = SubResource( 3 )
 shader_param/dir = Vector2( 0, -0.1 )
-shader_param/scroll_speed = 0.05
+shader_param/scroll_speed = 0.02
 
 [sub_resource type="Shader" id=5]
 code = "shader_type canvas_item;
@@ -89,6 +112,7 @@ bus = "Music"
 layer = -1
 
 [node name="Space" type="TextureRect" parent="CanvasLayer"]
+material = SubResource( 12 )
 margin_right = 3000.0
 margin_bottom = 1500.0
 texture = ExtResource( 8 )
@@ -97,21 +121,32 @@ texture = ExtResource( 8 )
 material = SubResource( 7 )
 margin_right = 1157.0
 margin_bottom = 975.0
+rect_scale = Vector2( 1.77438, 1.68 )
 texture = ExtResource( 3 )
-expand = true
 stretch_mode = 2
 
 [node name="Planet" type="TextureRect" parent="CanvasLayer"]
+material = SubResource( 10 )
+anchor_right = 0.008
+anchor_bottom = 0.004
+margin_left = -1556.0
+margin_top = -279.0
+margin_right = 1433.76
+margin_bottom = 1218.12
+rect_scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 13 )
+stretch_mode = 2
+
+[node name="Sun" type="TextureRect" parent="CanvasLayer"]
 material = SubResource( 8 )
 anchor_right = 0.008
 anchor_bottom = 0.004
-margin_left = 258.0
-margin_top = -60.0
-margin_right = 1280.76
-margin_bottom = 1122.12
+margin_left = -954.0
+margin_top = -239.0
+margin_right = 2035.76
+margin_bottom = 1258.12
 rect_scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 6 )
-expand = true
 stretch_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]

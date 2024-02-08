@@ -23,11 +23,19 @@ _global_script_class_icons={
 config/name="Final PV3"
 run/main_scene="res://Scenes/Menu.tscn"
 
+[audio]
+
+default_bus_layout="res://Assets/Sounds/default_bus_layout.tres"
+
 [display]
 
 window/size/width=1280
 window/size/height=720
 window/size/resizable=false
+
+[global]
+
+audio=false
 
 [gui]
 
