@@ -59,6 +59,7 @@ text = "0"
 stream = ExtResource( 2 )
 volume_db = -10.0
 autoplay = true
+bus = "Music"
 
 [connection signal="pressed" from="ColorRect/NextLevel" to="." method="_on_NextLevel_pressed"]
 [connection signal="pressed" from="ColorRect/Menu" to="." method="_on_Menu_pressed"]

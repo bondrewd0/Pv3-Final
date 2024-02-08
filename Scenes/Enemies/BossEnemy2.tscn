@@ -16,7 +16,7 @@ collision_mask = 8
 mode = 1
 script = ExtResource( 1 )
 hitpoints = 70
-spawnProtection = 7
+spawnProtection = 5
 points = 1000
 
 [node name="Sprite" type="Sprite" parent="."]
