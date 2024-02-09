@@ -1,5 +1,10 @@
 extends Enemy
 
+#Este jefe ataca de 2 modos
+#1: apunta al jugador
+#2: dispara doble en forma de abanico
+
+#nodos locales para dar direccion a las balas
 var bulletDir=[
 	Position2D.new(),
 	Position2D.new(),
@@ -8,18 +13,26 @@ var bulletDir=[
 	Position2D.new(),
 	Position2D.new()
 ]
+#Rotadores de direccion
 var lockOn1= Node2D.new()
 var lockOn2= Node2D.new()
 var rotator1=Node2D.new()
 var rotator2=Node2D.new()
+#Modo de ataque
 var attackMode=0
+#Estado de rotacion de abanicos
 var state=0
+#Referencia al jugador para apuntarle
 onready var playerRef=get_parent().get_node('Player')
+#referencia a nodos locales para usar
 onready var explotion=$ExplotionAnim 
 onready var bulletSpwan2=$BulletPoint2
 onready var bulletSpwan3=$BulletPoint3
 onready var bulletSpwan4=$BulletPoint4
+
+#inicializo rotadores y direcciones
 func _create_bullet_Targets():
+	#Inicio los rotadores en lospuntos de generacion de balas
 	lockOn1.position=bulletSpwan.position
 	lockOn2.position=Vector2(-130,-80)
 	rotator1.position=Vector2(-240,-150)
@@ -28,10 +41,12 @@ func _create_bullet_Targets():
 	add_child(lockOn2)
 	add_child(rotator1)
 	add_child(rotator2)
+	#2 direcciones apuntan al jugador
 	bulletDir[0].position=Vector2(0,10)
 	lockOn1.add_child(bulletDir[0])
 	bulletDir[1].position=Vector2(0,10)
 	lockOn2.add_child(bulletDir[1])
+	#4 direcciones disparan en abanico
 	bulletDir[2].position=Vector2(6,10)
 	rotator1.add_child(bulletDir[2])
 	bulletDir[3].position=Vector2(-6,10)
@@ -41,6 +56,7 @@ func _create_bullet_Targets():
 	bulletDir[5].position=Vector2(-6,10)
 	rotator2.add_child(bulletDir[5])
 
+#apuntado al jugador o rotacion en abanico
 func _action():
 	lockOn1.rotation=lockOn1.global_position.angle_to_point(playerRef.global_position)-deg2rad(90)
 	lockOn2.rotation=lockOn2.global_position.angle_to_point(playerRef.global_position)-deg2rad(90)
@@ -53,6 +69,7 @@ func _action():
 	rotator1.rotation = clamp(rotator1.rotation, deg2rad(150), deg2rad(220))
 	rotator2.rotation = clamp(rotator1.rotation, deg2rad(150), deg2rad(220))
 
+#Segun modo de ataque se generan 2 o 4 balas con distinta direccion y punto de generacion 
 func _fire_Bullet():
 	if(attackMode==0):
 		var bulletIns1=bulletScene.instance()
@@ -105,11 +122,13 @@ func _fire_Bullet():
 		bulletIns6.shooterType=1
 		bulletIns6.speed=300
 		get_parent().add_child(bulletIns6)
+
+#Consecuencia de colision con bala
 func _destroy():
-	hitpoints-=1
-	if hitpoints==0:
+	hitpoints-=1#reduce vida
+	if hitpoints==0: #Si se queda sin vida
 		_death()
-		var timer:Timer=Timer.new()
+		var timer:Timer=Timer.new() #Timer para efecto visual de muerto
 		add_child(timer)
 		timer.one_shot=true
 		timer.autostart=true
@@ -117,24 +136,27 @@ func _destroy():
 		timer.connect("timeout",self,"_disable_Boss")
 		timer.start()
 
+#Emision de puntos y eliminacion del nodo
 func _disable_Boss():
 	emit_signal("pointsUp",points)
 	queue_free() 
 
+#Efectos de muerte
 func _death():
-	$DeathSound.play()
+	$DeathSound.play()#Efecto sonoro
 	$Sprite.visible=false
+	#Efecto visual
 	explotion.visible=true
 	var anim=$ExplotionAnim/AnimationPlayer
 	anim.play("Explotion")
 
-
+#Cambio de modo de ataque
 func _on_Switch_timeout():
 	attackMode+=1
 	if attackMode==2:
 		attackMode=0
 
-
+#Cambio de estado de rotacion
 func _on_StateChanger_timeout():
 	state+=1
 	if state==2:

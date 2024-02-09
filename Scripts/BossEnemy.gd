@@ -1,5 +1,6 @@
 extends Enemy
-
+#Este jefe ataca rotando sus cañones en todas direcciones
+#nodos locales para dar direccion a las balas
 var bulletDir=[
 	Position2D.new(),
 	Position2D.new(),
@@ -10,11 +11,15 @@ var bulletDir=[
 	Position2D.new(),
 	Position2D.new()  
 ]
+
+#nodos locales para rotar las direcciones 
 var rotatorRef= Node2D.new()
 var reverseRotator=Node2D.new()
 
+#Referencia a animacion
 onready var explotion=$ExplotionAnim 
 
+#Inicializacion de nodos locales
 func _create_bullet_Targets():
 	add_child(rotatorRef)
 	add_child(reverseRotator)
@@ -35,19 +40,23 @@ func _create_bullet_Targets():
 	bulletDir[7].position=Vector2(-50,-25)
 	reverseRotator.add_child(bulletDir[7])
 
+#Rotacion de nodos
 func _action():
 	rotatorRef.rotate(0.01)
 	reverseRotator.rotate(-0.01)
 
+#Generacion de balas
 func _fire_Bullet():
+	#Creo la instancia y defino caracteristicas
 	var bulletIns1=bulletScene.instance()
-	bulletIns1.position=bulletSpwan.global_position
-	bulletIns1.rotation=self.rotation
+	bulletIns1.position=bulletSpwan.global_position #posicion de inicio
+	bulletIns1.rotation=self.rotation #Rotacion en base al cuerpo
+	#direccion segun el nodo
 	bulletIns1.dir=Vector2(bulletDir[0].global_position.x-self.global_position.x,bulletDir[0].global_position.y-self.global_position.y).normalized()
-	bulletIns1.type='EnemyBullet'
-	bulletIns1.shooterType=1
-	bulletIns1.speed=300
-	get_parent().add_child(bulletIns1)
+	bulletIns1.type='EnemyBullet' #Tipo de bala
+	bulletIns1.shooterType=1 #Tipo de sprite a usar
+	bulletIns1.speed=300 #velocidad de bala
+	get_parent().add_child(bulletIns1) #Se a;ade al nivel
 	var bulletIns2=bulletScene.instance()
 	bulletIns2.position=bulletSpwan.global_position
 	bulletIns2.rotation=self.rotation+0.5
@@ -104,12 +113,14 @@ func _fire_Bullet():
 	bulletIns8.shooterType=1
 	bulletIns8.speed=300
 	get_parent().add_child(bulletIns8)
-	
+
+
+#Consecuencia de colision con bala
 func _destroy():
-	hitpoints-=1
-	if hitpoints==0:
+	hitpoints-=1#reduce vida
+	if hitpoints==0: #Si se queda sin vida
 		_death()
-		var timer:Timer=Timer.new()
+		var timer:Timer=Timer.new() #Timer para efecto visual de muerto
 		add_child(timer)
 		timer.one_shot=true
 		timer.autostart=true
@@ -117,13 +128,16 @@ func _destroy():
 		timer.connect("timeout",self,"_disable_Boss")
 		timer.start()
 
+#Emision de puntos y eliminacion del nodo
 func _disable_Boss():
 	emit_signal("pointsUp",points)
 	queue_free() 
 
+#Efectos de muerte
 func _death():
-	$DeathSound.play()
+	$DeathSound.play()#Efecto sonoro
 	$Sprite.visible=false
+	#Efecto visual
 	explotion.visible=true
 	var anim=$ExplotionAnim/AnimationPlayer
 	anim.play("Explotion")

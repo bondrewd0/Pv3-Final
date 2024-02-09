@@ -43,7 +43,7 @@ margin_top = 296.0
 margin_right = 225.0
 margin_bottom = 336.0
 rect_scale = Vector2( 3, 3 )
-text = "Musci Volume
+text = "Music Volume
 "
 
 [node name="MusicSilder" type="HSlider" parent="ColorRect"]
