@@ -1,15 +1,18 @@
 extends Node2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+#Velocidad de la bala
 export var speed=0
+#Direccion
 var dir= Vector2(1,0)
+#Tipo de bala para colision
 var type=''
+#Tipo de bala para el sprite
 var shooterType=0
+#Sprite a usar
 var bulletSprite
-# Called when the node enters the scene tree for the first time.
+
+#carga la textura segun el objeto que lo genera
 func _ready():
 	match shooterType:
 		0:
@@ -23,20 +26,20 @@ func _ready():
 	
 
 
- #Called every frame. 'delta' is the elapsed time since the previous frame.
+#Movimeinto y colison
 func _process(delta):
-	self.position+=dir*speed*delta
-	if($RayCast2D.is_colliding()):
+	self.position+=dir*speed*delta #se mueve segun la velocidad y direccion dados
+	if($RayCast2D.is_colliding()): #Revisa colison
 		var collid=$RayCast2D.get_collider()
-		if collid!=null:
-			if(collid.type=='Enemy' && type=='PlayerBullet'):
+		if collid!=null: # si ha colisionado
+			if(collid.type=='Enemy' && type=='PlayerBullet'):#Si la bala viene del jugador y colisiona con un enemigo
 				collid._destroy()
 				queue_free()
-			if(type=='EnemyBullet' && collid.type=='Player'):
+			if(type=='EnemyBullet' && collid.type=='Player'):#Si la bala viene de un enemigo y colisiona con jugador
 				collid._taking_Fire()
 				queue_free()
 
 
-
+#si sale de la pantalla se elimina
 func _on_VisibilityNotifier2D_viewport_exited(_viewport):
 	queue_free()
